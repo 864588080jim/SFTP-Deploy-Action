@@ -61,12 +61,12 @@ echo 'SFTP Start'
 # create a temporary file containing sftp commands
 
 
-#printf "%s" "" >
-cat>$TEMP_SFTP_FILE<<EOF
-cd $6
-mkdir -p $5 
-put -r $5 $6  
-EOF
+printf "%s" "put -r $5 $6" >$TEMP_SFTP_FILE
+# cat>$TEMP_SFTP_FILE<<EOF
+# cd $6
+# mkdir -p $5 
+# put -r $5 $6  
+# EOF
 
 #-o StrictHostKeyChecking=no avoid Host key verification failed.
 sftp -b $TEMP_SFTP_FILE -P $3 $8 -o StrictHostKeyChecking=no -i $TEMP_SSH_PRIVATE_KEY_FILE $1@$2
