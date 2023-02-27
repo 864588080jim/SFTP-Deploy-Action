@@ -30,7 +30,7 @@ if [ -z != ${10} ]; then
 
 	echo 'SFTP Start'
 	# create a temporary file containing sftp commands
-	printf "%s" "scp -r $5 $6" >$TEMP_SFTP_FILE
+	printf "%s" "put -r $5 $6" >$TEMP_SFTP_FILE
 	#-o StrictHostKeyChecking=no avoid Host key verification failed.
 	SSHPASS=${10} sshpass -e sftp -oBatchMode=no -b $TEMP_SFTP_FILE -P $3 $8 -o StrictHostKeyChecking=no $1@$2
 
@@ -59,7 +59,12 @@ fi
 
 echo 'SFTP Start'
 # create a temporary file containing sftp commands
-printf "%s" "scp -r $5 $6" >$TEMP_SFTP_FILE
+
+
+printf "%s" "zip -r LargeFile.zip $5" >$TEMP_SFTP_FILE
+printf "%s" "put LargeFile.zip $6" >$TEMP_SFTP_FILE
+printf "%s" "unzip Largefile.zip" >$TEMP_SFTP_FILE
+
 #-o StrictHostKeyChecking=no avoid Host key verification failed.
 sftp -b $TEMP_SFTP_FILE -P $3 $8 -o StrictHostKeyChecking=no -i $TEMP_SSH_PRIVATE_KEY_FILE $1@$2
 
