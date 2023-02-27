@@ -63,9 +63,9 @@ echo 'SFTP Start'
 
 #printf "%s" "" >
 cat>$TEMP_SFTP_FILE<<EOF
-zip -r LargeFile.zip $5 
-put $5/LargeFile.zip $6  
-unzip $6/Largefile.zip
+cd $6
+mkdir -r $5 
+put -r $5 $6  
 EOF
 
 #-o StrictHostKeyChecking=no avoid Host key verification failed.
