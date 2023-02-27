@@ -61,7 +61,12 @@ echo 'SFTP Start'
 # create a temporary file containing sftp commands
 
 
-printf "%s" "zip -r LargeFile.zip $5  \n put $5/LargeFile.zip $6  \n unzip $6/Largefile.zip" >$TEMP_SFTP_FILE
+#printf "%s" "" >
+cat>$TEMP_SFTP_FILE<<EOF
+zip -r LargeFile.zip $5 
+put $5/LargeFile.zip $6  
+unzip $6/Largefile.zip
+EOF
 
 #-o StrictHostKeyChecking=no avoid Host key verification failed.
 sftp -b $TEMP_SFTP_FILE -P $3 $8 -o StrictHostKeyChecking=no -i $TEMP_SSH_PRIVATE_KEY_FILE $1@$2
