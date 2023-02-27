@@ -64,7 +64,7 @@ echo 'SFTP Start'
 #printf "%s" "" >
 cat>$TEMP_SFTP_FILE<<EOF
 cd $6
-mkdir -r $5 
+mkdir -p $5 
 put -r $5 $6  
 EOF
 
